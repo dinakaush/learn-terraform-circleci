@@ -36,15 +36,6 @@ resource "aws_s3_bucket_public_access_block" "app" {
   restrict_public_buckets = false
 }
 
-resource "aws_s3_bucket_acl" "app" {
-  depends_on = [
-    aws_s3_bucket_ownership_controls.app,
-    aws_s3_bucket_public_access_block.app,
-  ]
-
-  bucket = aws_s3_bucket.app.id
-  acl    = "public-read"
-}
 
 resource "aws_s3_bucket_website_configuration" "app" {
   bucket = aws_s3_bucket.app.bucket
